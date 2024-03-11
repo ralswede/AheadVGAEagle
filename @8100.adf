@@ -1,0 +1,41 @@
+AdapterId 08100h
+
+AdapterName "Ahead VGA Eagle Display Adapter"
+
+NumBytes 2
+
+NamedItem 
+	Prompt "VGA Awake - Card Enable"
+	
+	choice "Awake Mode" POS[0]=XXXXXXX1b 
+	choice "Sleep Mode" POS[0]=XXXXXXX0b 
+
+	Help "This field is for setting VGA Awake - adapter enabled."
+
+NamedItem Prompt "Multiple VGA Card Ids"
+	choice "Default, No DIP SW compared" pos[1]=XX000000b 
+	choice "1 Card, No DIP SW compared"  pos[1]=XX000001b 
+	choice "2 Cards, 1 DIP SW compared"  pos[1]=XX00001Xb 
+	choice "4 Cards, 2 DIP SW compared"  pos[1]=XX0001XXb 
+	choice "8 Cards, 3 DIP SW compared"  pos[1]=XX001XXXb 
+	choice "16 Cards, 4 DIP SW compared" pos[1]=XX01XXXXb
+
+	Help "Multiple VGA Ids from multiple cards installed."
+
+NamedItem 
+	Prompt "Extension Register Address Ranges"
+	
+	choice "Range 03D6-03D7 for CGA"      pos[1]=X0XXXXXXb io 03D6h-03D7h
+	choice "Range 03B6-03B7 for Hercules" pos[1]=X1XXXXXXb io 03B6h-03B7h	
+
+	Help "This setting controls the address range for extension registers. 
+	This does not effect general VGA setups."
+
+NamedItem 
+	Prompt "Extension Registers Access Mode Enable"
+	
+	choice "VGA or Any Access"    pos[1]=1XXXXXXXb
+	choice "CGA or Hercules Only" pos[1]=0XXXXXXXb
+	
+	Help "This bit controls access to the extension
+	registers at 3D6/7 or 3B6/7 in non-emulation mode." 
